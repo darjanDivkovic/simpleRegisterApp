@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class UserDao {
@@ -34,4 +36,51 @@ public class UserDao {
 		System.out.println("Student added to database");
 		
 	}
+
+	public User logIn() throws SQLException {
+		User user = null;
+		
+		Scanner unos = new Scanner(System.in);
+		
+		System.out.println("Enter username:");
+		String username = unos.next();
+		
+		System.out.println("Enter password:");
+		String password = unos.next();
+		
+		// Find username, exists ?
+		if(!usernameExists(username))
+			return null;
+		// Password check ? == ?
+		
+	}
+	
+	public boolean usernameExists(String username) throws SQLException{
+		
+		// Query
+		String query = "select * from users where username="+username;
+		
+		// Statement
+		Statement statement = connection.createStatement();
+		
+		// Result set
+		ResultSet rs = statement.executeQuery(query);
+		
+		// Set the position
+		rs.next();
+		
+		// Retrieve username
+		String retrievedUsername = rs.getString(1);
+		
+		// Check 
+		if(username == retrievedUsername){
+			return true;
+			
+		}
+		System.out.println("Username doesn't exist!");
+		return false;
+		
+	}
+	
+
 }
