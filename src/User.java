@@ -1,4 +1,5 @@
-package DTO;
+
+
 
 public class User {
 	
@@ -45,6 +46,7 @@ public class User {
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", logInMessage=" + logInMessage + "]";
 	}
+	
 	
 	
 
