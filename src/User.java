@@ -1,6 +1,4 @@
 
-
-
 public class User {
 	
 	// Data fields
