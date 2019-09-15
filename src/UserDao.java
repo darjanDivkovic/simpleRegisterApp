@@ -12,6 +12,7 @@ public class UserDao {
 	
 	// Register new user
 	public void registerNewUser() throws SQLException {
+
 		
 		// Create SQL query 
 		String query = "INSERT INTO users(username,password) VALUES(?,?)";
@@ -52,16 +53,24 @@ public class UserDao {
 		if(!usernameExists(username))
 			return null;
 		// Password check ? == ?
+		if(!passwordCheck(username, password)){
+			return null;
+		}
 		
+		user.setUsername(username);
+		user.setPassword(password);
+		
+		return user;
 	}
 	
-	public boolean usernameExists(String username) throws SQLException{
+	private boolean usernameExists(String username) throws SQLException{
 		
 		// Query
-		String query = "select * from users where username="+username;
+		String query = "select * from users where username=?";
 		
 		// Statement
-		Statement statement = connection.createStatement();
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(1, username);
 		
 		// Result set
 		ResultSet rs = statement.executeQuery(query);
@@ -82,5 +91,25 @@ public class UserDao {
 		
 	}
 	
+	private boolean passwordCheck(String username, String password) throws SQLException{
+		
+		String query = "Select * from users where username="+username;
+		
+		Statement statement = connection.createStatement();
+		
+		ResultSet rs = statement.executeQuery(query);
+		
+		rs.next();
+		
+		String retrievedPassword = rs.getString(2);
+		
+		if(password == retrievedPassword)
+			return true;
+		else{
+			System.out.println("Password incorrect");
+			return false;
+		}
 
+		
+	}
 }

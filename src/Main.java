@@ -8,6 +8,7 @@ public class Main {
 		int input = 0;
 		Scanner unos = new Scanner(System.in);
 		UserDao userDao = new UserDao();
+		User user = null;
 		
 	do{
 			
@@ -23,6 +24,7 @@ public class Main {
 		}
 		if(input == 2){
 			System.out.println("Log in");
+			user = userDao.logIn();
 		}
 	}
 	while(input != 3);
