@@ -1,11 +1,13 @@
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException{
 		
 		int input = 0;
 		Scanner unos = new Scanner(System.in);
+		UserDao userDao = new UserDao();
 		
 	do{
 			
@@ -17,6 +19,7 @@ public class Main {
 		
 		if(input == 1){
 			System.out.println("Register");
+			userDao.registerNewUser();
 		}
 		if(input == 2){
 			System.out.println("Log in");

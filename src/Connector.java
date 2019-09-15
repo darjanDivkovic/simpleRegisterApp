@@ -14,7 +14,7 @@ public class Connector {
 	// Connection properties
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "T3Dh2K1m5c";
-	private static final String CONN_STRING = "jdbc:mysql://localhost/students?useSSL=false";
+	private static final String CONN_STRING = "jdbc:mysql://localhost/users?useSSL=false&serverTimezone=UTC";
 	
 	// Connection object
 	private Connection connection = null;
